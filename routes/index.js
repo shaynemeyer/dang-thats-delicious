@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const storeController = require('../controllers/store.controller');
 const userController = require('../controllers/user.controller');
+const authController = require('../controllers/auth.controller');
 
 const { catchErrors } = require('../handlers/errorHandlers');
 
@@ -29,8 +30,12 @@ router.get('/login', userController.loginForm);
 router.get('/register', userController.registerForm);
 
 // 1. Validate the data
-// 2.
-// 3.
-router.post('/register', userController.validateRegister);
+// 2. register the user
+// 3. we need to log them in
+router.post('/register',
+  userController.validateRegister,
+  userController.register,
+  authController.login
+);
 
 module.exports = router;
