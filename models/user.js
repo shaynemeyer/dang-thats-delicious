@@ -27,7 +27,7 @@ userSchema.virtual('gravatar').get(function () {
   return `https://gravatar.com/avatar/${hash}?s=200`;
 });
 
-userSchema.plugin(passportLocalMongoose, {usernameField: 'email'});
+userSchema.plugin(passportLocalMongoose, { usernameField: 'email' });
 userSchema.plugin(mongodbErrorHandler, {});
 
 module.exports = mongoose.model('User', userSchema);
