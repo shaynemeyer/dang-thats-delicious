@@ -59,7 +59,7 @@ exports.getStores = async (req, res) => {
 };
 
 const confirmOwner = (store, user) => {
-  if(!store.author.equal(user._id)){
+  if(!store.author.equals(user._id)){
     throw Error('You must own a store in order to edit it!');
   }
 };
@@ -88,7 +88,7 @@ exports.updateStore = async (req, res) => {
 };
 
 exports.getStoreBySlug = async (req, res) => {
-  const store = await Store.findOne({ slug: req.params.slug }).populate('author');
+  const store = await Store.findOne({ slug: req.params.slug }).populate('author reviews');
   if(!store) {
     return next();
   }
